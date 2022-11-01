@@ -4,6 +4,14 @@ namespace SpriteKind {
     export const Boat1 = SpriteKind.create()
     export const Boat2 = SpriteKind.create()
 }
+function hisAttackingTwice (boomSpriteArrayPX: Sprite[]) {
+    for (let currentBoomSprite of boomSpriteArrayPX) {
+        if (grid.spriteCol(currentBoomSprite) == grid.spriteCol(cursor) && grid.spriteCol(currentBoomSprite) == grid.spriteCol(cursor)) {
+            return 0
+        }
+    }
+    return 0
+}
 // moveBoat needs changes to take in the boatRotateArrayP1 or boatRotateArrayP2
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     rotateFlag = "nothing"
@@ -90,7 +98,10 @@ function isPlayerXWinner (enemyBoats: Sprite[][], hitOrMissPX: Sprite[]) {
     return killCount
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (moveBoatFlag == 3) {
+    let list: number[] = []
+    if (hisAttackingTwice(list)) {
+    	
+    } else if (moveBoatFlag == 3) {
         if (currentPlayer == "Player1") {
             isHitOrMiss(boatSpriteArrayP2, hitOrMissP1)
             switchPlayer()
